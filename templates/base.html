@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>
+            {% block title %}Base HTML file{% endblock %}
+        </title>
+    </head>
+    <body>
+        <h1>My site</h1>
+        <hr>
+        <a href="{% url 'core:home' %}">Home</a> /
+        <a href="{% url 'core:secret' %}">Secret</a> /
+        <a href="{% url 'core:secret2' %}">Secret 2</a> /
+        <a href="{% url 'core:signup' %}">Signup</a>  / 
+        {% if user.is_authenticated %}
+            <a href="{% url 'password_change' %}">Change password</a>  / 
+            <a href="{% url 'logout' %}">Logout</a> 
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> /
+        {% endif %}
+        <hr>
+        {% block content %}
+        {% endblock %}  
+    </body>
+</html>
